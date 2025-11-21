@@ -1,0 +1,43 @@
+Beams:eCM = 5020
+Beams:idA = 2212
+Beams:idB = 2212
+
+Init:showProcesses = off
+Init:showMultipartonInteractions = off
+Init:showChangedSettings = off
+Init:showChangedParticleData = off
+Stat:showProcessLevel = off
+Stat:showErrors = off
+
+HardQCD:all = on
+Next:numberShowInfo = 0
+Next:numberShowProcess = 0
+Next:numberShowEvent = 0
+ColourReconnection:reconnect = on
+ColourReconnection:mode = 1
+MultipartonInteractions:pT0Ref = 2.15
+ColourReconnection:allowDoubleJunRem = off
+ColourReconnection:junctionCorrection = 1.15
+ColourReconnection:timeDilationMode = 3
+ColourReconnection:timeDilationPar = 0.18
+ProcessLevel:all = off
+
+StringFlav:probQQtoQ=0.34
+
+TimeShower:pTmin = 0.5
+
+HadronLevel:Decay = on
+HadronLevel:Hadronize = on
+111::mayDecay = false
+311::mayDecay = false
+
+
+511::mayDecay = false
+521::mayDecay = false
+531::mayDecay = false
+5122::mayDecay = false
+
+411::mayDecay = false
+421::mayDecay = false
+431::mayDecay = false
+4122::mayDecay = false

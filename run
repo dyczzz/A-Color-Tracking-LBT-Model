@@ -1,0 +1,168 @@
+#!/bin/bash
+
+source msg
+
+echo
+msg 'running PYTHIA8'
+
+
+cd PYTHIA8
+./compile.sh||{
+   warning "running failed"
+   continue
+ }
+
+./driver.sh||{
+  warning "running failed"
+  contunue
+}
+
+cd ..
+
+cd LBT
+rm -r build
+./compile
+./driver.sh||{
+  warning "running failed"
+  contunue
+}
+
+
+cd ..
+
+#cd jet_construct
+#./compile.sh||{
+#   warning "running failed"
+#   continue
+# }
+
+#./driver.sh||{
+#  warning "running failed"
+#  contunue
+#}
+
+#cd ..
+
+#cd jet_PYTHIA8
+#./compile.sh||{
+#   warning "running failed"
+#   continue
+# }
+
+#./driver.sh||{
+#  warning "running failed"
+#  contunue
+#}
+
+
+#cd ..
+
+#for i in `seq 1 1`; do
+
+# echo
+# msg 'running AA'
+
+ cd lpnega_Frag
+ 
+ ./compile.sh||{
+   warning "running failed"
+   continue
+ }
+
+ ./driver.sh||{
+   warning "running failed"
+   continue
+ }
+ cp hadrons-nega.dat ../lpposi_Frag/hadrons-nega.dat
+# cp HM_pp.dat HM_pp.dat.$i
+
+ cd ..
+
+
+ cd lpposi_Frag
+
+ ./compile.sh||{
+   warning "running failed"
+   continue
+ }
+
+ ./driver.sh||{
+   warning "running failed"
+   continue
+ }
+
+ cd ALICE-cjet
+
+ ./compile.sh||{
+   warning "running failed"
+   continue
+ }
+
+ ./driver.sh||{
+   warning "running failed"
+   continue
+ }
+
+ cd ..
+
+ cd ..
+
+# echo
+# msg 'running pp'
+ 
+ cd pp_lpposi_Frag
+
+ ./compile.sh||{
+   warning "running failed"
+   continue
+ }
+
+ ./driver.sh||{
+   warning "running failed"
+   continue
+ }
+
+ cd ALICE-cjet
+
+ ./compile.sh||{
+   warning "running failed"
+   continue
+ }
+
+ ./driver.sh||{
+   warning "running failed"
+   continue
+ }
+
+ cd ..
+
+ cd ..
+
+# cd RAA-D0-PbPb5020
+
+# ./compile||{
+#   warning "running failed"
+#   continue
+# }
+# ./a.out||{
+#   warning "running failed"
+#   continue
+# }
+# cd RAA-AuAu200
+
+# ./compile||{
+#  warning "running failed"
+#  continue
+# }
+# ./a.out||{
+#  warning "running failed"
+#  continue
+# }
+
+#cp RAA-mu.dat RAA-mu.dat.$i
+
+#cd ..
+
+
+
+#done

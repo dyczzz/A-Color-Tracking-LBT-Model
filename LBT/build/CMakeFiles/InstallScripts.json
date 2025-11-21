@@ -1,0 +1,8 @@
+{
+	"InstallScripts" : 
+	[
+		"/public/home/ycdang/PbPb5020_0-10_LBT/LBT/build/cmake_install.cmake",
+		"/public/home/ycdang/PbPb5020_0-10_LBT/LBT/build/src/cmake_install.cmake"
+	],
+	"Parallel" : false
+}

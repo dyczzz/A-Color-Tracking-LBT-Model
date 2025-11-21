@@ -1,0 +1,2 @@
+gfortran -ffixed-line-length-none -o a.out RAA_analysis.f
+

@@ -1,0 +1,49 @@
+Init:showProcesses = off
+Init:showMultipartonInteractions = off
+Init:showChangedSettings = off
+Init:showChangedParticleData = off
+Stat:showProcessLevel = off
+Stat:showErrors = off
+
+Next:numberShowInfo = 0
+Next:numberShowProcess = 0
+Next:numberShowEvent = 0
+
+Beams:idA = 2212
+Beams:idB = 2212
+Beams:eCM = 5020.
+
+Main:numberOfEvents = 30
+
+ProcessLevel:all = on
+ProcessLevel:resonanceDecays = off
+
+PartonLevel:all = on
+PartonLevel:MPI = on 
+PartonLevel:ISR = on
+PartonLevel:FSR = on
+PartonLevel:FSRinProcess = on
+PartonLevel:FSRinResonances = on
+PartonLevel:earlyResDec = off
+PartonLevel:Remnants = on
+
+TimeShower:pTmin = 2
+
+//Check:event = off
+
+//HadronLevel:all = off
+HadronLevel:Hadronize = on
+HadronLevel:Decay = on
+111::mayDecay = false
+211::mayDecay = false
+311::mayDecay = false
+321::mayDecay = false
+2212::mayDecay = false
+2112::mayDecay = false
+
+HardQCD:all = on
+
+PhaseSpace:pTHatMin = 700
+PhaseSpace:pTHatMax = 1000
+//PhaseSpace:bias2Selection = on
+//Tune:pp = 14

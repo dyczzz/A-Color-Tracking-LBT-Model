@@ -1,0 +1,19 @@
+#PBS -N jetscape_test
+#PBS -l nodes=1:ppn=1
+#PBS -e /public/home/ycdang/run_log/error
+#PBS -o /public/home/ycdang/run_log/out
+#PBS -q batch
+#PBS -V
+#PBS -S /bin/bash 
+### Set intel environment###
+cd $PBS_O_WORKDIR
+# run the program
+i=1098813
+./compile
+./driver.sh
+cp pT-AA.dat /data/ycdang/particle/distri/light/hadroncut/ptmin=1/pt_hat_400-500/AA/pT_AA.${i}.dat
+cp pT-pp.dat /data/ycdang/particle/distri/light/hadroncut/ptmin=1/pt_hat_400-500/pp/pT_pp.${i}.dat
+
+#cp HQ_pp.dat /public/home/ycdang//results/LBT/AuAu/0-10/b/ppbrick160/HQ_pp.${JOBID}.dat
+cd ..
+rm -r RAA-D0-PbPb5020.${i}

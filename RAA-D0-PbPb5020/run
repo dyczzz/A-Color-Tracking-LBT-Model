@@ -1,0 +1,36 @@
+#/bin/bash
+istart=432890
+nev=100
+for ((i=$istart; i<$istart+$nev; i++ )); do
+ for j in `seq 1 5`; do
+ 
+
+
+ cp /public/home/ycdang/results/decay/PbPb/40-50/c/AA/mu_AA.${i}.${j}.dat /public/home/ycdang/PNP_JET_QUENCHING/decay/HMdecay/mu_AA.dat
+
+ cp /public/home/ycdang/results/decay/PbPb/40-50/c/pp/mu_pp.${i}.${j}.dat /public/home/ycdang/PNP_JET_QUENCHING/decay/HMdecay/mu_pp.dat
+
+# declare -i l=$i+1707
+# k=$l
+
+# cp /public/home/ycdang/results/decay/50-60/c/AA/e_AA.${k}.${j}.dat /public/home/ycdang/PNP_JET_QUENCHING/decay/HMdecay/e_AAc.dat
+ 
+# cp /public/home/ycdang/results/decay/50-60/c/pp/e_pp.${k}.${j}.dat /public/home/ycdang/PNP_JET_QUENCHING/decay/HMdecay/e_ppc.dat
+
+ cd /public/home/ycdang/PNP_JET_QUENCHING/RAA-analysis/
+ 
+ cd RAA-D0-PbPb5020
+
+ ./compile||{
+  warning "running failed"
+  continue
+ }
+ ./a.out||{
+  warning "running failed"
+  continue
+ } 
+
+ cp RAA-mu.dat /public/home/ycdang/results/results_RAA/PbPb/c-mu/40-50/RAA-c.${i}.${j}.dat
+
+done
+done
