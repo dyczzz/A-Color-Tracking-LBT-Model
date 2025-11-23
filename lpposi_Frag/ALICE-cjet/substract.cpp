@@ -1,0 +1,10 @@
+double maxrap2 = 1.0;
+            unsigned int n_repeat2 = 1;
+            double ghost_area2 = 0.001; 
+            // double ghost_area = 0.05;
+            fastjet::GhostedAreaSpec area_spec2(maxrap2, n_repeat2, ghost_area2);
+            fastjet::AreaDefinition area_def(active_area, area_spec2);
+fastjet::ClusterSequenceArea clust_seq0(input_particles, jet_def0, area_def); 
+double pt_Min = 0.2; 
+            vector<PseudoJet> jets_cs0 = sorted_by_pt(clust_seq0.inclusive_jets(pt_Min));
+double jet_Area = jets_cs0[i].area();
