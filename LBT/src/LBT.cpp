@@ -388,12 +388,12 @@ void LBT(int &n, double &ti){
 //              preKT=alphas/0.3;
 
 // calculate p,T-dependence K factor
-//              KPfactor=1.0;
-//              KTfactor=1.0;
-//              if(fabs(KATT1[i])==4||fabs(KATT1[i])==5) {
+              KPfactor=1.0;
+              KTfactor=1.0;
+              if(fabs(KATT1[i])==4||fabs(KATT1[i])==5) {
                   KPfactor=1.0+KPamp*exp(-PLen*PLen/2.0/KPsig/KPsig);
                   KTfactor=1.0+KTamp*exp(-pow((temp0-hydro_Tc),2)/2.0/KTsig/KTsig);
-//              }
+              }
 //              Kfactor=KPfactor*KTfactor*KTfactor*preKT*preKT;      
               Kfactor=KPfactor*KTfactor*KTfactor*runKT*preKT;      
 
