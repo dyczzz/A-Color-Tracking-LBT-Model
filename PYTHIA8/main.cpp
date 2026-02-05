@@ -107,11 +107,11 @@ int main(int argc, char **argv){
     int numHQ = 0;
     double sigma = 0.0;
 
-    double R = 0.3;
+    double R = 0.4;
 
     const double phoetacut = 0.0, phoptmin = 0.0, phoptmax = 0.0;
     const double trketacut = 0.6, trkptmin = 0.15, trkptmax = 300.0;
-    const double jetetacut = 0.6, jetptmin = 5.0, jetptmax = 7000.0;
+    const double jetetacut = 2.8, jetptmin = 30, jetptmax = 7000.0;
 
     double Njet = 0.0;
 
@@ -145,11 +145,11 @@ int main(int argc, char **argv){
 
             if (event[i].isFinal()) {
 
-            if (fabs(pid) == 2212 || fabs(pid) == 211 || fabs(pid) == 321 || fabs(pid) == 411 || fabs(pid) == 421 || fabs(pid) == 4122) {
+//            if (fabs(pid) == 2212 || fabs(pid) == 211 || fabs(pid) == 321 || fabs(pid) == 411 || fabs(pid) == 421 || fabs(pid) == 4122) {
 //              if (fabs(pid) == 2212 || fabs(pid) == 321 || fabs(pid) == 211 || fabs(pid) == 111 || fabs(pid) == 311 || fabs(pid) == 2112 || fabs(pid) == 511 || fabs(pid) == 521 || fabs(pid) == 5122) {  
-//              if (fabs(pid) == 2212 || fabs(pid) == 321 || fabs(pid) == 211 || fabs(pid) == 111 || fabs(pid) == 311 || fabs(pid) == 2112) {
+              if (fabs(pid) == 2212 || fabs(pid) == 321 || fabs(pid) == 211 || fabs(pid) == 111 || fabs(pid) == 311 || fabs(pid) == 2112) {
 //                   if (fabs(pid) == 321 || fabs(pid) == 211 || fabs(pid) == 2212) {
-                   if (ppt > 0.15 && peta < 0.9)
+                   if (ppt > 0.15 && peta < 3.2)
                     {
                     pj0001.reset_momentum(ppx, ppy, ppz, pe);
                     pj0001.set_user_index(i);
@@ -603,7 +603,7 @@ int main(int argc, char **argv){
 
 
 		//  parton information
-		sigma += pythia.info.sigmaGen();
+		sigma = pythia.info.sigmaGen();
 		numEvent++;
 		if (numEvent == nEvent) 
 		{

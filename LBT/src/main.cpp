@@ -122,8 +122,8 @@ int main(int argc, char* argv[]){
 
     int numEvent = 0;	   
     long num1;
+    double weight, weightSum;
     for(int n=1; ; ++n) {
-        num1=NUM1;
         if(initHardFlag==1) {  // initialize within LBT
             if(numEvent>=ncall) break;
         } else if(initHardFlag==2) { // initialize by reading particle list
@@ -142,11 +142,12 @@ int main(int argc, char* argv[]){
         if(initHardFlag==1) {  // initialize within LBT
             jetInitialize(numInitXY); // initialize jet partons
         } else { // initialize by reading particle list
-            int dummyInt;
-            fpList >> dummyInt;
-            if(fpList.eof()) break;
-            fpList >> nj;
+            double dummyInt;
 
+            if(!(fpList >> dummyInt)) break;
+            fpList >> nj;
+	        fpList >> dummyInt;
+   
             // read particle information from file, may move to a function outside in future
             double EiTot=0.0;
             for(int i=1; i<=nj; i=i+1) {
@@ -269,7 +270,7 @@ int main(int argc, char* argv[]){
         if(outFormat==1){
 
             if(heavyOut==1) outHQ << n << "    " << iHQ << endl;
-            if(lightOut==1) positive << n << "    " << nnn << "    " << nj << "    " << num1 << endl;
+            if(lightOut==1) positive << n << "    " << nnn << "    " << nj << endl;
             for(int i=1;i<=np;i++) { // if only want to write out leading partons, change np->nj
 
 //                if(P[0][i] < cutOut && abs(KATT1[i])!=4) continue; // throw away light partons below cut

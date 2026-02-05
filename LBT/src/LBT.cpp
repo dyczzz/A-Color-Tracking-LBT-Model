@@ -106,7 +106,7 @@ void LBT(int &n, double &ti){
   for(int i=1;i<=np;i++) {
       if(KATT1[i]!=21 && abs(KATT1[i])>5) continue; 
       // if the production time of a parton is ahead of the current time, do nothing
-      if(Vfrozen[0][i]>=ti) continue;  
+      if(Vfrozen[0][i]>=ti) continue;
 
       icl22=0;
       qt=0;
@@ -390,10 +390,10 @@ void LBT(int &n, double &ti){
 // calculate p,T-dependence K factor
               KPfactor=1.0;
               KTfactor=1.0;
-              if(fabs(KATT1[i])==4||fabs(KATT1[i])==5) {
+//              if(fabs(KATT1[i])==4||fabs(KATT1[i])==5) {
                   KPfactor=1.0+KPamp*exp(-PLen*PLen/2.0/KPsig/KPsig);
                   KTfactor=1.0+KTamp*exp(-pow((temp0-hydro_Tc),2)/2.0/KTsig/KTsig);
-              }
+//              }
 //              Kfactor=KPfactor*KTfactor*KTfactor*preKT*preKT;      
               Kfactor=KPfactor*KTfactor*KTfactor*runKT*preKT;      
 

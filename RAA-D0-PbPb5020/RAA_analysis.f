@@ -110,9 +110,7 @@ ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
 	OPEN(UNIT=41,FILE="../lpposi_Frag/hadrons-posi.dat")
         OPEN(UNIT=42,FILE="../pp_lpposi_Frag/hadrons-posi.dat")      
  
-c	OPEN(UNIT=40,FILE="/data/ycdang/particle/hadron/b/pt_hat_80-100/AA/hadrons-nega.1198210.dat")
-c	OPEN(UNIT=41,FILE="/data/ycdang/particle/hadron/b/pt_hat_80-100/AA/hadrons-posi.1198210.dat")
-c        OPEN(UNIT=42,FILE="/data/ycdang/particle/hadron/b/pt_hat_80-100/pp/hadrons-posi.1198210.dat")
+
 
 ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
 ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc

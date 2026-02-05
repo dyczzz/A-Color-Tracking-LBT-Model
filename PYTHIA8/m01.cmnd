@@ -43,7 +43,7 @@ HadronLevel:Decay = on
 
 HardQCD:all = on
 
-PhaseSpace:pTHatMin = 700
+PhaseSpace:pTHatMin = 20
 PhaseSpace:pTHatMax = 1000
 //PhaseSpace:bias2Selection = on
 //Tune:pp = 14

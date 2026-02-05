@@ -20,9 +20,9 @@
 //*****************************
 
 using namespace Pythia8;
-int searchmin(double*p, int *q,int*s,int len);
-int searchmax(double*p, int *q,int len);
-int searchmin2(double*p,int len);
+int searchmin(std::vector<double>& p, std::vector<int>& q, std::vector<int>& s, int len);
+int searchmax(std::vector<double>& p, std::vector<int>& q, int len);
+int searchmin2(std::vector<double>& p, int len);
 
 char infiles[128];
 
@@ -60,24 +60,36 @@ int main(int argv, char* argc[])
     double hbarc = 0.19732;
     double c_px, c_py ,c_pz, c_e, c_m,c_x,c_y,c_z,c_t,c_c,c_ac,c_status;
     int c_id,tt;
-    int acol_ip[5000]={0};
+    std::vector<int> acol_ip(5000,0);
     int pp_collision=0;    //used for total cross section
     int  ccbar_num=0;
     double cmeson_px,cmeson_py,cmeson_pz, cmeson_P,tempp;
     double cbar_meson_px,cbar_meson_py,cbar_meson_pz, cbar_meson_P,pt_square,cbar_meson_energy;
     double pt,amid,Qmid;
     int mid,ie,II,status,col,acol,Npart,NN,Ntotal,PAosi,simble,mmaxindex;
-    int idp[100000]={0},idpo[100000]={0};
-    double pxpo[100000]={0.0},pypo[100000]={0.0},pzpo[100000]={0.0},epo[100000]={0.0},ptpo[100000]={0.0},xxpo[100000]={0.0},yypo[100000]={0.0},zzpo[100000]={0.0},ttpo[100000]={0.0},phio[100000]={0.0},etao[100000]={0.0},mass[10000]={0.0};
-    double pxp[100000]={0.0},pyp[100000]={0.0},pzp[100000]={0.0},ep[100000]={0.0},ptp[100000]={0.0},xxp[100000]={0.0},yyp[100000]={0.0},zzp[100000]={0.0},ttp[100000]={0.0},phi[100000]={0.0},distance[100000]={0.0},dsting[1000][10000]={0.0},Qscale[100000]={0.0};//,mass[100000]={0.0};
-    int nncol[100000]={0},aacol[100000]={0},index[100000]={0},qindex[100000]={0},aqindex[100000]={0},used[100000]={0},pair[10000]={0},apair[10000]={0},gindex[10000]={0},strings[1000][10000]={0},Snum[10000]={0};//,nncol_mid[100000]={0},aacol_mid[100000]={0};
-    // event loop
+    
 
+    std::vector<int> idp(100000,0), idpo(100000,0);
+    std::vector<double> pxpo(100000,0.0), pypo(100000,0.0), pzpo(100000,0.0), epo(100000,0.0);
+    std::vector<double> ptpo(100000,0.0), xxpo(100000,0.0), yypo(100000,0.0), zzpo(100000,0.0);
+    std::vector<double> ttpo(100000,0.0), phio(100000,0.0), etao(100000,0.0), mass(10000,0.0);
+    std::vector<double> pxp(100000,0.0), pyp(100000,0.0), pzp(100000,0.0), ep(100000,0.0);
+    std::vector<double> ptp(100000,0.0), xxp(100000,0.0), yyp(100000,0.0), zzp(100000,0.0);
+    std::vector<double> ttp(100000,0.0), phi(100000,0.0), distance(100000,0.0), Qscale(100000,0.0);
+    
+
+    std::vector<std::vector<double> > dsting(1000, std::vector<double>(10000,0.0));
+    std::vector<std::vector<int> > strings(1000, std::vector<int>(10000,0));
+    
+    std::vector<int> nncol(100000,0), aacol(100000,0), index(100000,0);
+    std::vector<int> qindex(100000,0), aqindex(100000,0), used(100000,0);
+    std::vector<int> pair(10000,0), apair(10000,0), gindex(10000,0), Snum(10000,0);
+
+    // event loop
 
     int jetType = 0; //quark jet: 0    gluon jet: 1    quark + gluon jet : 2
     int partonid1 = 0, partonid2 = 0;
     double phi1 = 0, phi2 = 0;
-
 
     for (int iEvent=0; iEvent<n_event; iEvent++) {    
         fscanf(infile1,"%d %d\n",&mid,&Npart);
@@ -191,7 +203,7 @@ int main(int argv, char* argc[])
         if (Nquark>Naquark) {
             // if the only one (anti-)quark
             if(Naquark==1){
-                int used_q[1000]={0};
+                std::vector<int> used_q(1000,0);
                 for (int pp=0;pp<Nquark;pp++) {
                     distance[pp]=(phio[aqindex[0]]-phio[qindex[pp]])*(phio[aqindex[0]]-phio[qindex[pp]])+(etao[aqindex[0]]-etao[qindex[pp]])*(etao[aqindex[0]]-etao[qindex[pp]]);
                     used_q[pp]=used[qindex[pp]];
@@ -207,7 +219,7 @@ int main(int argv, char* argc[])
                 }
             }else{
                 //sort the input partons according to pT
-                int temindex[1000]={0};
+                std::vector<int> temindex(1000,0);
                 for(int yy=0;yy<Naquark;yy++){
                      temindex[yy]=aqindex[yy];
                  }
@@ -225,7 +237,7 @@ int main(int argv, char* argc[])
                 }
                 // Assign the pairs
                 for (int ii=0; ii<Naquark; ii++) {
-                    int used_q[1000]={0};
+                    std::vector<int> used_q(1000,0);
                     for (int pp=0;pp<Nquark;pp++) {
                         distance[pp]=(phio[aqindex[ii]]-phio[qindex[pp]])*(phio[aqindex[ii]]-phio[qindex[pp]])+(etao[aqindex[ii]]-etao[qindex[pp]])*(etao[aqindex[ii]]-etao[qindex[pp]]);
                         used_q[pp]=used[qindex[pp]];
@@ -249,7 +261,7 @@ int main(int argv, char* argc[])
         if(Naquark>Nquark){
             // if the only one (anti-)quark
             if(Nquark==1){
-                int used_q[1000]={0};
+                std::vector<int> used_q(1000,0);
                 for(int pp=0;pp<Naquark;pp++){
                     distance[pp]=(phio[qindex[0]]-phio[aqindex[pp]])*(phio[qindex[0]]-phio[aqindex[pp]])+(etao[qindex[0]]-etao[aqindex[pp]])*(etao[qindex[0]]-etao[aqindex[pp]]);
                     used_q[pp]=used[aqindex[pp]];
@@ -265,7 +277,7 @@ int main(int argv, char* argc[])
                 }
             }else{
                 //sort the input partons according to pT// track the index
-                int temindex[1000]={0};
+                std::vector<int> temindex(1000,0);
                 for(int yy=0;yy<Nquark;yy++){
                      temindex[yy]=qindex[yy];
                  }
@@ -283,7 +295,7 @@ int main(int argv, char* argc[])
                 }
                 // Assign the pairs
                 for(int ii=0;ii<Nquark;ii++){
-                    int used_q[1000]={0};
+                    std::vector<int> used_q(1000,0);
                     for(int pp=0;pp<Naquark;pp++){
                         distance[pp]=(phio[qindex[ii]]-phio[aqindex[pp]])*(phio[qindex[ii]]-phio[aqindex[pp]])+(etao[qindex[ii]]-etao[aqindex[pp]])*(etao[qindex[ii]]-etao[aqindex[pp]]);
                         used_q[pp]=used[aqindex[pp]];
@@ -308,7 +320,7 @@ int main(int argv, char* argc[])
             if(Nquark>1){cout<<"df";
                 //sort the input partons according to Delta R
                 for(int www=0;www<Nquark;www++){
-                    double disquark[200][200]={0.0};
+                    std::vector<std::vector<double> > disquark(350, std::vector<double>(350,0.0));
                     // calculate the distance between quark pairs
                     for(int ii=0;ii<Nquark;ii++){
                         for(int pp=0;pp<Naquark;pp++){
@@ -346,7 +358,7 @@ int main(int argv, char* argc[])
         }
         if(Ngluon>0){
             for(int pp=0;pp<Ngluon;pp++){
-                double disg[1000]={0.0},disq[1000]={0.0};
+                std::vector<double> disg(1000,0.0), disq(1000,0.0);
                 for(int nn=0;nn<Npair;nn++){
                     double sphi=phio[gindex[pp]]-phio[pair[nn]];
                     if(abs(sphi)>PI){sphi=2*PI-abs(sphi);}
@@ -365,7 +377,7 @@ int main(int argv, char* argc[])
         // sort the gluons // track the index
         for(int kkk=0;kkk<Npair;kkk++){
             if(Snum[kkk]>=2){
-                int temindex[1000]={0};
+                std::vector<int> temindex(1000,0);
                      for(int yy=0;yy<Snum[kkk];yy++){
                          temindex[yy]=strings[kkk][yy];
                      }
@@ -475,7 +487,7 @@ output2.close();
   return 0;
 }
 
-int searchmin(double*p,int*q,int*s,int len)
+int searchmin(std::vector<double>& p, std::vector<int>& q, std::vector<int>& s, int len)
 {
     double m = 100000000.0;
     int k;
@@ -491,7 +503,7 @@ int searchmin(double*p,int*q,int*s,int len)
 } 
 
 
-int searchmax(double*p,int*q,int len)
+int searchmax(std::vector<double>& p, std::vector<int>& q, int len)
 {
     double m = 0.0;
     int k;
@@ -507,7 +519,7 @@ int searchmax(double*p,int*q,int len)
 } 
 
     
-int searchmin2(double*p,int len)
+int searchmin2(std::vector<double>& p, int len)
 {
     double m = 100000000.0;
     int k;
@@ -521,4 +533,3 @@ int searchmin2(double*p,int len)
     }
     return k;
 } 
-    

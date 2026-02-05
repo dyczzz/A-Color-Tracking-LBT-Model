@@ -1982,7 +1982,7 @@ void radiationHQ(int parID, double qhat0ud, double v0[4], double P2[4], double P
   double kpGluon[4];
   double HQmass=sqrt(P3[0]*P3[0]-P3[1]*P3[1]-P3[2]*P3[2]-P3[3]*P3[3]);
 
-  if(abs(parID)!=4) {
+  if(abs(parID)!=4 && abs(parID)!=5) {
       HQmass = 0.0;
       P3[0] = sqrt(P3[1]*P3[1]+P3[2]*P3[2]+P3[3]*P3[3]);
   }   
@@ -2783,11 +2783,11 @@ double nHQgluon(int parID,double dtLRF,double &time_gluon,double &temp_med,doubl
           V[2][i]=setY;
           V[3][i]=setZ;
           V[0][i]=-log(1.0-ran0(&NUM1));
-
-          V[1][i]=V[1][i]+P[1][i]/P[0][i]*tau0;
-          V[2][i]=V[2][i]+P[2][i]/P[0][i]*tau0;
+          if(Vfrozen[0][i]<tau0) Vfrozen[0][i]=tau0;
+          V[1][i]=V[1][i]+P[1][i]/P[0][i]*Vfrozen[0][i];
+          V[2][i]=V[2][i]+P[2][i]/P[0][i]*Vfrozen[0][i];
                                                   
-          Vfrozen[0][i]=tau0;
+//          Vfrozen[0][i]=tau0;
           Vfrozen[1][i]=V[1][i];
           Vfrozen[2][i]=V[2][i];
           Vfrozen[3][i]=V[3][i];
