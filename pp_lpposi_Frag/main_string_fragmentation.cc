@@ -194,7 +194,7 @@ int main(int argv, char* argc[])
         }
         if(m_str==0)m_str=0.10;
         
-        pythia.forceTimeShower(0,Npart-1,1000);//Continue the FSR to the defaulted scale
+        pythia.forceTimeShower(1,Npart,1000);//Continue the FSR to the defaulted scale
 
 
 

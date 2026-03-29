@@ -266,7 +266,7 @@ int main(int argv, char* argc[])
 
 
 
-        pythia.forceTimeShower(0,Npart-1,1000);
+        pythia.forceTimeShower(1,Npart,1000);
 
 
 

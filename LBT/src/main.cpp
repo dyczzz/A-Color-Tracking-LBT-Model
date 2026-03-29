@@ -146,7 +146,7 @@ int main(int argc, char* argv[]){
 
             if(!(fpList >> dummyInt)) break;
             fpList >> nj;
-	        fpList >> dummyInt;
+//	        fpList >> dummyInt;
    
             // read particle information from file, may move to a function outside in future
             double EiTot=0.0;
