@@ -1,0 +1,1 @@
+g++ colorless.cc -o frag -I/usr/local/pythia8/8309/include -O2 -std=c++11 -pedantic -W -Wall -Wshadow -fPIC -pthread  -L/usr/local/pythia8/8309/lib -Wl,-rpath,/usr/local/pythia8/8309/lib -lpythia8 -ldl `fastjet-config --libs` `fastjet-config --cxxflags` -I/usr/local/fastjet/3.5.1/fjcontrib-1.101/include -L/usr/local/fastjet/3.5.1/fjcontrib-1.101/lib -lRecursiveTools
